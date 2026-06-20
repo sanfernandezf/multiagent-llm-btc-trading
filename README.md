@@ -1,62 +1,72 @@
-[![Status: Research Paper](https://img.shields.io/badge/status-research%20paper-blue)](https://cubelabs.co/paper-multiagent/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Gemma 7B](https://img.shields.io/badge/model-Gemma%207B-orange)](https://ollama.com/library/gemma2:7b)
-[![BTC/USDT](https://img.shields.io/badge/market-BTC%2FUSDT-yellow)](https://cubelabs.co/paper-multiagent/)
+[![Status: Research Paper](https://img.shields.io/badge/status-research%20paper-007BA7)](https://cubelabs.co/paper-multiagent/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-22BB33)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-007BA7)](https://www.python.org/)
+[![Gemma 7B](https://img.shields.io/badge/model-Gemma%207B-FF8800)](https://ollama.com/library/gemma2:7b)
+[![BTC/USDT](https://img.shields.io/badge/market-BTC%2FUSDT-F7931A)](https://cubelabs.co/paper-multiagent/)
+[![DOI](https://img.shields.io/badge/DOI-Pending-lightgrey)](https://cubelabs.co/paper-multiagent/)
+[![Inferences](https://img.shields.io/badge/inferences-72-007BA7)](https://cubelabs.co/paper-multiagent/)
 
-# 1 vs 3 vs 5 vs 9 — Agentes LLM Decidiendo Sobre Cada Trade
+# More Agents, Better Risk: How Panel Composition Changes the Risk-Reward Profile of an LLM-Based Bitcoin Strategy
 
-**72 inferencias reales sobre Gemma 7B. La composición del panel importa más que la cantidad de agentes.**
+**72 real inferences to Gemma 7B. 9 diverse agents beat Buy & Hold by +2.91pp. 3 polarized agents underperform the market. The composition of the panel matters more than the number of agents.**
 
-> **Problema:** Cuando un comité de agentes LLM vota sobre si comprar o no Bitcoin, ¿importa más cuántos son o quiénes son?
+> **The problem:** When a committee of LLM agents votes on whether to buy Bitcoin, does it matter more *how many* they are, or *who* they are?
 >
-> **Respuesta:** La composición. 9 agentes con sesgos diversos superan a Buy & Hold en +2.91pp. 3 agentes polarizados rinden peor que el mercado (−0.70pp vs B&H). La diversidad de perspectivas — no el número — es el factor determinante.
+> **The answer:** The composition. 9 agents with diverse biases outperform Buy & Hold by **+2.91pp**. 3 polarized agents perform worse than the market (−0.70pp vs B&H). Diversity of perspectives — not headcount — is the decisive factor.
 
 ---
 
-## Resultados Clave
+## Key Results
 
-| Configuración | Retorno | vs B&H | Sharpe | Max DD | Win Rate |
-|--------------|---------|--------|--------|--------|----------|
-| Buy & Hold   | −6.45%  | —      | −1.12  | −6.45% | 0.0%     |
-| **1 Agente** (Momentum) | −4.75% | **+1.70pp** | −0.73 | −4.9% | 50.0% |
-| **3 Agentes** (polarizados) | −7.15% | **−0.70pp** | −1.31 | −7.2% | 40.0% |
-| **5 Agentes** | −5.20% | **+1.25pp** | −0.68 | −5.4% | 57.1% |
-| **★ 9 Agentes** (diversos) | **−3.54%** | **+2.91pp** | **−0.41** | **−3.8%** | **57.1%** |
+| Configuration | Return | vs B&H | Sharpe | Max DD | Win Rate |
+|---|---|---|---|---|---|
+| **Buy & Hold** | −6.45% | — | −1.12 | −6.45% | 0.0% |
+| **1 Agent** (Momentum) | −4.75% | **+1.70pp** | −0.73 | −4.9% | 50.0% |
+| **3 Agents** (polarized) | −7.15% | **−0.70pp** | −1.31 | −7.2% | 40.0% |
+| **5 Agents** | −5.20% | **+1.25pp** | −0.68 | −5.4% | 57.1% |
+| **★ 9 Agents** (diverse) | **−3.54%** | **+2.91pp** | **−0.41** | **−3.8%** | **57.1%** |
 
-9 agentes (diversos) ganan. 3 agentes (polarizados) pierden. La diferencia entre best y worst es **+3.61pp** con la composición como única variable.
-
----
-
-## Las 9 Personalidades
-
-| # | Agente | Estrategia | Sesgo | Comprar/8 |
-|---|--------|-----------|-------|-----------|
-| 1 | Momentum | Cruces EMA, sigue tendencia | 🟢 Alcista | 7/8 |
-| 2 | Mean Reversion | Compra sobreventa (RSI<35) | 🔵 Mixto | 4/8 |
-| 3 | Trend Follower | Necesita confirmación direccional | 🔴 Bajista | 1/8 |
-| 4 | Breakout | Compra ruptura de resistencias | 🟢 Alcista | 8/8 |
-| 5 | Value | Precio descuento vs media 50p | 🔴 Bajista | 1/8 |
-| 6 | Vol. Averse | Evita alta volatilidad | 🔴 Bajista | 1/8 |
-| 7 | Range | Compra soporte, vende resistencia | 🟢 Alcista | 8/8 |
-| 8 | Volume | Requiere confirmación volumen | 🔵 Mixto | 4/8 |
-| 9 | Risk Parity | Sizing adaptativo por volatilidad | 🟢 Alcista | 8/8 |
-
-**Balance:** 5 alcistas · 3 bajistas · 1 mixto — Los patrones de voto son muy consistentes: ningún agente cambia su comportamiento durante el experimento.
+9 diverse agents win. 3 polarized agents lose. The gap between best and worst is **+3.61pp** with composition as the only variable.
 
 ---
 
-## Estructura del Repositorio
+## Why This Matters
+
+Most research on multi-agent systems focuses on *how many* agents you need. This paper shows that **who you put on the panel matters more**. A polarized committee of 3 underperforms a single agent. A diverse committee of 9 outperforms everything — including Buy & Hold.
+
+For the first time, we demonstrate this with **real LLM inferences** (72 calls to Gemma 7B), not simulated agents or synthetic data.
+
+---
+
+## The 9 Personalities
+
+| # | Agent | Strategy | Bias | Buy/8 |
+|---|---|---|---|---|
+| 1 | Momentum | EMA crossovers, trend following | 🟢 Bullish | 7/8 |
+| 2 | Mean Reversion | Buy oversold (RSI<35), sell overbought | 🔵 Mixed | 4/8 |
+| 3 | Trend Follower | Medium-term MA signals, needs confirmation | 🔴 Bearish | 1/8 |
+| 4 | Breakout | Buy resistance breakouts | 🟢 Bullish | 8/8 |
+| 5 | Value | Price discount vs 50-period MA | 🔴 Bearish | 1/8 |
+| 6 | Vol. Averse | Avoids high volatility, stays in cash | 🔴 Bearish | 1/8 |
+| 7 | Range | Buy support, sell resistance | 🟢 Bullish | 8/8 |
+| 8 | Volume | Requires volume confirmation | 🔵 Mixed | 4/8 |
+| 9 | Risk Parity | Adaptive sizing by volatility | 🟢 Bullish | 8/8 |
+
+**Balance:** 5 bullish · 3 bearish · 1 mixed — Voting patterns are remarkably consistent throughout the experiment.
+
+---
+
+## Repository Structure
 
 ```
-├── README.md               ← Este archivo
-├── LICENSE                 ← MIT
-├── paper.md                ← Paper completo en Markdown (5.747 palabras)
-├── index.html              ← Versión HTML del paper (inglés)
-├── index.es.html           ← Versión HTML del paper (español)
+├── README.md                 ← This file (English)
+├── LICENSE                   ← MIT
+├── paper.md                  ← Full paper in Markdown (5,747 words)
+├── index.html                ← HTML paper (English)
+├── index.es.html             ← HTML paper (Spanish)
 ├── experimentos/
-│   ├── figures.py          ← Código Python para regenerar las 4 figuras
-│   └── results.csv         ← Resultados crudos de las 72 inferencias
+│   ├── figures.py            ← Python code to regenerate all 4 figures
+│   └── results.csv           ← Raw results of all 72 inferences
 └── web/images/
     ├── fig1_main_results.png
     ├── fig2_personalities.png
@@ -68,100 +78,100 @@
 
 ## Quick Start
 
-### 1. Regenerar las figuras
+### 1. Regenerate figures
 
 ```bash
 pip install matplotlib pandas numpy
 python experimentos/figures.py
 ```
 
-Las figuras se guardan en `web/images/`.
+Figures are saved to `web/images/`.
 
-### 2. Leer el paper
+### 2. Read the paper
 
 ```bash
 # Terminal
 cat paper.md | less
 
-# O abrir el HTML en navegador
-open index.es.html   # Español
+# Or open HTML in browser
 open index.html      # English
+open index.es.html   # Spanish
 ```
 
-### 3. Descargar PDF
+### 3. Download PDF
 
-Descarga el PDF completo desde [cubelabs.co/paper-multiagent/](https://cubelabs.co/paper-multiagent/).
+Download the full PDF from [cubelabs.co/paper-multiagent/](https://cubelabs.co/paper-multiagent/).
 
 ---
 
-## Figuras
+## Figures
 
-![Figura 1](web/images/fig1_main_results.png)
-*Retorno por configuración. 9 (azul) y 1 (verde) superan a B&H (gris). 3 (rojo) pierden. La diferencia entre best y worst es +3.61pp.*
+![Figure 1](web/images/fig1_main_results.png)
+*Return by configuration. 9 (blue) and 1 (green) beat B&H. 3 (red) underperform. The gap between best and worst is +3.61pp.*
 
-![Figura 2](web/images/fig2_personalities.png)
-*Veces que cada agente votó COMPRAR. Breakout, Range y Risk Parity siempre. Trend Follower, Value y Vol. Averse casi nunca.*
+![Figure 2](web/images/fig2_personalities.png)
+*Times each agent voted BUY. Breakout, Range and Risk Parity always buy. Trend Follower, Value and Vol. Averse almost never.*
 
-![Figura 3](web/images/fig3_composition.png) | ![Figura 4](web/images/fig4_timeline.png)
+![Figure 3](web/images/fig3_composition.png) | ![Figure 4](web/images/fig4_timeline.png)
 :---: | :---:
-*9 agentes (balanceado) vs 3 (polarizado)* | *Valor acumulado. 9 (azul) siempre sobre B&H. 3 (rojo) por debajo.*
+*9 agents (balanced) vs 3 (polarized)* | *Cumulative value. 9 (blue) always above B&H. 3 (red) below.*
 
 ---
 
-## Diseño Experimental
+## Experimental Design
 
-- **Datos:** BTC/USDT spot, 22 Feb – 15 Jun 2026 (84 días)
-- **Precios:** ~$96,000 → ~$72,000 (−6.45%)
-- **Fuente:** Yahoo Finance (yfinance)
-- **Decisiones:** 8 puntos separados ~10 días
-- **Modelo:** Gemma 7B vía ollama (72 llamadas reales)
-- **Hardware:** GPU local
-- **Input por agente:** Precio actual, retornos 1d/1m/3m, RSI(14), rango 5p, volumen relativo
-- **Votación:** Mayoría simple. Empate → sin posición (USDC)
-- **Sin apalancamiento, sin stop-loss, sin take-profit**
+- **Data:** BTC/USDT spot, Feb 22 – Jun 15, 2026 (84 days)
+- **Price range:** ~$96,000 → ~$72,000 (−6.45%)
+- **Source:** Yahoo Finance (yfinance)
+- **Decision points:** 8, spaced ~10 days apart
+- **Model:** Gemma 7B via ollama (72 real API calls)
+- **Hardware:** Local GPU
+- **Input per agent:** Current price, 1d/1m/3m returns, RSI(14), 5-period range, relative volume
+- **Voting mechanism:** Simple majority. Tie → no position (USDC)
+- **No leverage, no stop-loss, no take-profit**
 
-Cada agente es una **personalidad definida por un prompt en inglés**, no por código hardcodeado. Un agente alcista no tiene un umbral de RSI — tiene una personalidad que le inclina a ver oportunidades de compra. Esto simula un comité de inversión real.
-
----
-
-## Hallazgo Principal
-
-> Añadir agentes no garantiza mejora. Un quinto agente alcista tiene menos beneficio marginal que un agente contrarian. La diversidad entre learners es más importante que su número (Dietterich, 2000; Brown et al., 2005).
-
-**Para el diseño de sistemas multi-agente:**
-1. La diversidad de sesgos es más importante que la cantidad de agentes
-2. Paneles con representación igual de posturas opuestas sufren parálisis
-3. 9 ≻ 1 ≈ 5 ≻ 3 — la relación no es lineal
+Each agent is a **personality defined by an English prompt**, not hardcoded logic. A bullish agent doesn't have an RSI threshold — it has a *personality* that biases it toward buying opportunities. This simulates a real investment committee.
 
 ---
 
-## Limitaciones
+## Main Finding
 
-1. Una sola ejecución (84 días, 8 decisiones)
-2. Un solo activo (BTC/USDT)
-3. Un solo modelo LLM (Gemma 7B)
-4. Sin stop-loss ni take-profit
-5. Sin costes de transacción
-6. Sin slippage ni liquidez
-7. Posible sobreajuste en diseño de personalidades
+> Adding agents does not guarantee improvement. A fifth bullish agent has less marginal benefit than one contrarian agent. Diversity among learners matters more than their number (Dietterich, 2000; Brown et al., 2005).
+
+**For multi-agent system design:**
+1. Diversity of biases matters more than number of agents
+2. Panels with equal representation of opposing views suffer paralysis
+3. 9 ≻ 1 ≈ 5 ≻ 3 — the relationship is non-linear
 
 ---
 
-## Recursos
+## Limitations
+
+1. Single run (84 days, 8 decisions)
+2. Single asset (BTC/USDT)
+3. Single LLM model (Gemma 7B)
+4. No stop-loss or take-profit
+5. No transaction costs
+6. No slippage or liquidity model
+7. Potential overfitting in personality design
+
+---
+
+## Resources
 
 - **Paper online:** [cubelabs.co/paper-multiagent/](https://cubelabs.co/paper-multiagent/)
-- **Whitepaper RSI:** [cubelabs.co/rsi-strategy/](https://cubelabs.co/rsi-strategy/)
-- **Autor:** [Santiago Fernández](https://cubelabs.co)
-- **Licencia:** MIT
+- **RSI Strategy Whitepaper:** [cubelabs.co/rsi-strategy/](https://cubelabs.co/rsi-strategy/)
+- **Author:** [Santiago Fernández](https://cubelabs.co)
+- **License:** MIT
 
 ---
 
-## Citar
+## Citation
 
 ```bibtex
 @misc{fernandez2026multiagent,
   author = {Santiago Fernández},
-  title = {1 vs 3 vs 5 vs 9: Agentes LLM Decidiendo Sobre Cada Trade},
+  title = {More Agents, Better Risk: How Panel Composition Changes the Risk-Reward Profile of an LLM-Based Bitcoin Strategy},
   year = {2026},
   howpublished = {\url{https://cubelabs.co/paper-multiagent/}}
 }
